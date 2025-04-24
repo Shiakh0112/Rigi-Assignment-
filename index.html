@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lit Vibes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+      body {
+        background-color: #000;
+        color: #fff;
+        overflow-x: hidden;
+      }
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+      .hero {
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: -1rem 2rem;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("./bgBuller.jpg") no-repeat center/cover;
+        opacity: 0.2; /* 👈 control background opacity here */
+        z-index: 0;
+        height: auto;
+      }
+
+      .hero-text,
+      .hero-img {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-text {
+        max-width: 500px;
+      }
+      .hero-text h1 {
+        font-size: 2.5rem;
+        line-height: 1.4;
+      }
+      .hero-text h1 span {
+        color: #ec4899;
+      }
+      .download-btn {
+        margin-top: 1rem;
+        background: #ec4899;
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .hero-img {
+        max-width: 300px;
+      }
+      .section {
+        position: relative;
+        padding: 1rem 1rem;
+        text-align: center;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      /* 💄 Blurred Banner Background using same images */
+      .section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://images-static.nykaa.com/uploads/2a5ea03c-35e1-49ec-b3c6-0f035f649b5e.jpg"),
+          url("https://images-static.nykaa.com/creatives/8b32fc1b-4be1-496b-950e-1f0c19c5805c/default.jpg"),
+          url("https://images-static.nykaa.com/creatives/bcab920c-97cf-4788-b97a-b55b05e2c203/default.jpg"),
+          url("https://images-static.nykaa.com/creatives/05d4ce63-45bb-4027-a1e3-8648a35594a3/default.jpg"),
+          url("https://images-static.nykaa.com/creatives/438ef571-206d-4a65-9a03-ee5ca94ecccd/default.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: blur(5px) brightness(0.5);
+        z-index: -2;
+      }
+
+      /* Optional dark overlay */
+      .section::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: nowrap;
+        position: relative;
+        z-index: 1;
+        padding: 2rem 0;
+      }
+
+      .card-foreground {
+        display: flex;
+        position: relative;
+        gap: 2;
+      }
+
+      .card-foreground img {
+        position: relative;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, z-index 0.3s;
+      }
+
+      .card-foreground img:nth-child(3) {
+        z-index: 5;
+        transform: scale(1.2);
+      }
+
+      .card-foreground img:nth-child(2),
+      .card-foreground img:nth-child(4) {
+        z-index: 4;
+        transform: scale(1);
+        margin: 0 -40px;
+      }
+
+      .card-foreground img:nth-child(1),
+      .card-foreground img:nth-child(5) {
+        z-index: 3;
+        transform: scale(0.9);
+        margin: 0 -40px;
+        opacity: 0.8;
+        filter: blur(1px);
+      }
+
+      .bottom-heading {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        z-index: 1;
+        position: relative;
+      }
+
+      .highlight {
+        color: #ff77aa;
+      }
+
+      .card-container {
+        position: relative;
+        margin-top: -1rem;
+      }
+
+      /* blurred background */
+      .card-bg-blur {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        filter: blur(10px);
+        opacity: 0.5;
+        z-index: 0;
+      }
+
+      .card-bg-blur img {
+        width: 180px;
+        border-radius: 1rem;
+      }
+
+      /* front cards */
+      .card-foreground img {
+        transition: all 0.3s ease-in-out;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      /* Leftmost Card */
+      .card-foreground img:nth-child(1) {
+        z-index: 3;
+        clip-path: polygon(0% 0%, 100% 5%, 100% 95%, 0% 100%);
+        margin: 0 -40px;
+        opacity: 0.8;
+        filter: blur(1px);
+      }
+
+      /* Left Center Card */
+      .card-foreground img:nth-child(2) {
+        z-index: 4;
+        clip-path: polygon(0% 0%, 100% 2%, 100% 98%, 0% 100%);
+        margin: 0 -40px;
+      }
+
+      /* Center Card */
+      .card-foreground img:nth-child(3) {
+        z-index: 5;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      }
+
+      /* Right Center Card */
+      .card-foreground img:nth-child(4) {
+        z-index: 4;
+        clip-path: polygon(0% 2%, 100% 0%, 100% 100%, 0% 98%);
+        margin: 0 -40px;
+      }
+
+      /* Rightmost Card */
+      .card-foreground img:nth-child(5) {
+        z-index: 3;
+        clip-path: polygon(0% 5%, 100% 0%, 100% 100%, 0% 95%);
+        margin: 0 -40px;
+        opacity: 0.8;
+        filter: blur(1px);
+      }
+
+      .card-foreground img:hover {
+        transform: scale(1.05);
+      }
+
+      .bottom-heading {
+        margin-top: 2rem;
+        font-size: 1.25rem;
+      }
+      .cards-section {
+        text-align: center;
+        margin-top: 3rem;
+      }
+
+      .bottom-bar span {
+        background: #111;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+      }
+      .highlight {
+        color: #ec4899;
+      }
+      .bottom-bar {
+        display: flex;
+        gap: 1.5rem;
+        width: 100%;
+        margin: auto;
+        gap: 80px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        font-size: 1rem;
+        align-items: center;
+      }
+
+      .bottom-bar span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .bottom-bar .icon {
+        background-color: pink;
+        color: white;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%; /* full circle */
+        font-size: 16px;
+      }
+      .bottom-bar {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        font-size: 1rem;
+        align-items: center;
+      }
+
+      .bottom-bar span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .bottom-bar .icon {
+        background-color: pink;
+        color: white;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 16px;
+      }
+
+      /* Download Button Styling */
+      .download-btn-wrapper {
+        margin-top: 2rem;
+      }
+
+      .download-btn {
+        background: linear-gradient(
+          90deg,
+          #ff69b4,
+          #ff8c00
+        ); /* pink to orange */
+        color: white;
+        padding: 12px 24px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3); /* subtle pink shadow */
+      }
+
+      .download-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(255, 105, 180, 0.4);
+      }
+      /* footer */
+      .section-wrapper {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: -1rem 1rem;
+        padding-top: 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        color: white;
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+      }
+
+      .testimonial-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        justify-content: center;
+        max-width: 64rem;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 640px) {
+        .testimonial-container {
+          flex-direction: row;
+        }
+      }
+
+      .testimonial-card {
+        position: relative;
+        background: linear-gradient(to bottom, #3a3a3a, #1a1a1a);
+        border-radius: 0.375rem;
+        padding: 1.5rem;
+        width: 100%;
+        min-height: 180px;
+      }
+
+      .testimonial-text {
+        color: #d1d5db;
+        font-size: 0.875rem;
+
+        line-height: 1.625;
+      }
+
+      .testimonial-footer {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding-top: 1rem;
+        border-top: 1px solid #374151;
+        margin-top: auto;
+      }
+
+      .testimonial-avatar {
+        border-radius: 9999px;
+        width: 2.5rem;
+        height: 2.5rem;
+        object-fit: cover;
+      }
+
+      .testimonial-meta {
+        font-size: 0.75rem;
+        color: #9ca3af;
+      }
+
+      .testimonial-meta p {
+        font-weight: 600;
+        color: white;
+      }
+
+      .quote-icon {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        color: #9ca3af;
+        font-size: 1.25rem;
+        opacity: 0.3;
+      }
+
+      .cta-section {
+        background: linear-gradient(to right, #f97316, #ec4899, #db2777);
+        text-align: center;
+        color: white;
+        padding: 2rem 1rem;
+      }
+
+      .cta-title {
+        font-weight: 600;
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .cta-button {
+        background-color: white;
+        color: black;
+        font-weight: 600;
+        font-size: 0.875rem;
+        padding: 0.25rem 1rem;
+        border-radius: 0.375rem;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .footer {
+        background-color: white;
+        color: black;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .footer {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        max-width: 24rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      .logo span {
+        font-weight: 600;
+        color: #f97316;
+        font-size: 1.125rem;
+      }
+
+      .footer-text {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        color: #374151;
+      }
+
+      .footer-address,
+      .footer-phone {
+        font-size: 0.563rem;
+        color: #4b5563;
+        line-height: 1.2;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 0.5rem;
+        color: #9ca3af;
+      }
+
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-right {
+        text-align: right;
+        font-size: 0.563rem;
+        color: #9ca3af;
+      }
+
+      .footer-download {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 0.563rem;
+        font-weight: 600;
+        margin-left: auto;
+      }
+
+      @media (min-width: 768px) {
+        .footer-download {
+          flex-direction: row;
+          align-items: center;
+          gap: 0.5rem;
+          margin-left: auto;
+        }
+      }
+
+      .download-button {
+        border: 1px solid black;
+        color: black;
+        font-size: 0.563rem;
+        border-radius: 0.25rem;
+        padding: 0.125rem 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-text">
+          <h1>
+            Discover trends that <br />
+            make you <span>Stylish</span>
+          </h1>
+          <button class="download-btn">Download Now ▶</button>
+        </div>
+        <img class="hero-img" src="hero2.png" alt="Girl on phone" />
+      </section>
+
+      <section class="cards-section">
+        <div class="section">
+          <h2>Seamless Style in Every Second</h2>
+          <div class="card-container">
+            <div class="card-bg-blur">
+              <img
+                src="https://images-static.nykaa.com/uploads/2a5ea03c-35e1-49ec-b3c6-0f035f649b5e.jpg"
+                alt="1"
+              />
+              <img
+                src="https://images-static.nykaa.com/creatives/8b32fc1b-4be1-496b-950e-1f0c19c5805c/default.jpg"
+                alt="2"
+              />
+              <img
+                src="https://images-static.nykaa.com/creatives/bcab920c-97cf-4788-b97a-b55b05e2c203/default.jpg"
+                alt="3"
+              />
+              <img
+                src="https://images-static.nykaa.com/creatives/05d4ce63-45bb-4027-a1e3-8648a35594a3/default.jpg"
+                alt="4"
+              />
+              <img
+                src="https://images-static.nykaa.com/creatives/438ef571-206d-4a65-9a03-ee5ca94ecccd/default.jpg"
+                alt="5"
+              />
+            </div>
+            <div class="card-foreground">
+              <img
+                src="https://images-static.nykaa.com/uploads/2a5ea03c-35e1-49ec-b3c6-0f035f649b5e.jpg"
+                alt="1"
+              />
+              <img
+                src="https://images-static.nykaa.com/creatives/8b32fc1b-4be1-496b-950e-1f0c19c5805c/default.jpg"
+                alt="2"
+              />
+              <img
+                src="https://images-static.nykaa.com/creatives/bcab920c-97cf-4788-b97a-b55b05e2c203/default.jpg"
+                alt="3"
+              />
+              <img
+                src="https://images-static.nykaa.com/creatives/05d4ce63-45bb-4027-a1e3-8648a35594a3/default.jpg"
+                alt="4"
+              />
+              <img
+                src="https://images-static.nykaa.com/creatives/438ef571-206d-4a65-9a03-ee5ca94ecccd/default.jpg"
+                alt="5"
+              />
+            </div>
+          </div>
+          <div class="bottom-heading">
+            Effortless Trends, <span class="highlight">No Distractions</span>
+          </div>
+        </div>
+
+        <h2 style="margin-top: 2rem">
+          Effortless Trends, <span class="highlight">No Distractions</span>
+        </h2>
+
+        <div class="bottom-bar">
+          <span><span class="icon">⚪</span> No Ads</span>
+          <span
+            ><span class="icon">🎥</span> 10,000+ Videos in 30+ Categories</span
+          >
+          <span><span class="icon">🆕</span> New Videos Everyday</span>
+        </div>
+
+        <!-- Download Button -->
+        <div class="download-btn-wrapper">
+          <button class="download-btn">
+            Download Now <span class="arrow">⮕</span>
+          </button>
+        </div>
+      </section>
+      <section class="section-wrapper">
+        <h2 class="section-title">User Love</h2>
+        <div class="testimonial-container">
+          <!-- Card 1 -->
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              <i class="fas fa-quote-left text-gray-400 mr-2"></i>
+              Lit Vibes is my go-to platform for quick style tips and
+              educational content. The videos are short, engaging and relatable
+              in every way. Also, I’m loving a personal style coach in my
+              pocket!
+            </div>
+            <div class="testimonial-footer">
+              <img
+                class="testimonial-avatar"
+                src="https://storage.googleapis.com/a1aa/image/7176e70c-cf15-4700-3b94-5e90ca972960.jpg"
+                alt="Portrait of a woman with long dark hair smiling"
+              />
+              <div class="testimonial-meta">
+                <p>Tina Pearson</p>
+                <p>Host</p>
+              </div>
+            </div>
+            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              <i class="fas fa-quote-left text-gray-400 mr-2"></i>
+              I never thought earning about trends and personal development
+              could be so fun and easy! Lit Vibes has helped me appreciate my
+              style and confidence in just a few minutes a day.
+            </div>
+            <div class="testimonial-footer">
+              <img
+                class="testimonial-avatar"
+                src="https://storage.googleapis.com/a1aa/image/ba4a2055-65f0-471e-aca9-4c0b16460295.jpg"
+                alt="Portrait of a woman with wavy hair smiling"
+              />
+              <div class="testimonial-meta">
+                <p>Anyssa Shaw</p>
+                <p>Lecturer</p>
+              </div>
+            </div>
+            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              <i class="fas fa-quote-left text-gray-400 mr-2"></i>
+              What I love about Lit Vibes is how it understands the needs of
+              women like me. The videos are empowering, wholesome, and perfect
+              for my busy schedule. It’s truly inspiring.
+            </div>
+            <div class="testimonial-footer">
+              <img
+                class="testimonial-avatar"
+                src="https://storage.googleapis.com/a1aa/image/bbb0b25c-f206-4681-13c4-753542d11bf6.jpg"
+                alt="Portrait of a woman with straight hair smiling"
+              />
+              <div class="testimonial-meta">
+                <p>Miriam Patel</p>
+                <p>Host</p>
+              </div>
+            </div>
+            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-wrapper">
+        <div class="cta-section">
+          <h3 class="cta-title">Join Lit Vibes Now</h3>
+          <button class="cta-button" type="button">
+            Download Now <i class="fas fa-play ml-2"></i>
+          </button>
+        </div>
+
+        <footer class="footer">
+          <div class="footer-info">
+            <div class="logo">
+              <img
+                src="https://storage.googleapis.com/a1aa/image/e1f44899-d587-46e6-46e5-52b721282bbf.jpg"
+                alt="Flame icon representing Lit Vibes logo"
+              />
+              <span>Lit Vibes</span>
+            </div>
+            <p class="footer-text">
+              Discover trends that make you stylish in 60 secs
+            </p>
+            <address class="footer-address">
+              3rd And 4th Floor, Building 1084, 14th Main, 17th Cross Road,
+              Sector 3, Hsr Layout, Bengaluru, Karnataka 560102
+            </address>
+            <p class="footer-phone">Ph: +91 92856 68320</p>
+            <hr class="border-gray-300 my-2" />
+            <div class="footer-links">
+              <a href="#">About Us</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Cancellation Policy</a>
+            </div>
+          </div>
+
+          <div class="footer-right">2024 LITVIBES & All rights reserved</div>
+
+          <div class="footer-download">
+            <div>Download App</div>
+            <button class="download-button" type="button">
+              <i class="fab fa-google-play"></i> Play Store
+            </button>
+          </div>
+        </footer>
+      </section>
+    </div>
+  </body>
+</html>
